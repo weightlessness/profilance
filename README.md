@@ -2,7 +2,6 @@ How to run the app?
 
   
     1. Clone repo.
-    2. Type 'cd profilance' in the terminal
-    3. Install packages with 'npm install'
-    4. Start the application with the 'npm run dev' command
-    5. Go to localhost: 3000
+    2. Install packages with 'npm install'
+    3. Start the application with the 'npm start' command
+    4. Go to localhost:3000 (or localhost with another port, if something is already running on port 3000)
