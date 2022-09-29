@@ -15,11 +15,15 @@ function RightBlock() {
     
     const {data} = useInitLinks(page + 1)
 
+    const dataString = JSON.stringify(data)
+
     useEffect(() => {
-        if(data) {
-            dispatch(appActions.init({data}))
+        
+        if(dataString) {
+            const parsedData = JSON.parse(dataString)
+            dispatch(appActions.init({data: parsedData}))
         }
-    },[data])
+    },[dataString])
 
     return (
         <div className="container__Block noBorder">

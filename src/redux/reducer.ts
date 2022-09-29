@@ -68,6 +68,7 @@ const slice = createSlice({
             action: PayloadAction<{ link: ShortUrl }>
         ) => {
             const link = action.payload.link
+            if (link.clicks === null) link.clicks = 0
             if (!state.short_urls.paginatorInfo.hasMorePages) {
                 let newLink = {
                     ...link,
