@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import { ApolloClient, ApolloProvider, DefaultOptions, InMemoryCache } from '@apollo/client';
 import store from './redux/store';

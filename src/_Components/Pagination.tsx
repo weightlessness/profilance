@@ -11,7 +11,7 @@ export function Pagination(props: PaginationProps) {
 
     const { pageSelected, selectPage, pageCount } = props
 
-    const handlePageClick = (event: any) => {
+    const handlePageClick = (event: {selected: number}) => {
         selectPage(event.selected)
     };
 

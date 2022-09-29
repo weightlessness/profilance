@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Echo from 'laravel-echo';
 import io from "socket.io-client";
+import { ShortUrl } from '../redux/reducer';
 
 declare global {
     interface Window {
@@ -10,8 +11,13 @@ declare global {
 }
 
 type Options = {
-    callBack: (payload: any) => void;
+    callBack: (payload: ListenerPayload) => void;
 };
+
+export type ListenerPayload = {
+    short_url: ShortUrl,
+    socket: object
+}
 
 function createSocketConnection() {
     if (!window.Echo) {
@@ -23,8 +29,8 @@ function createSocketConnection() {
     }
 }
 
-function listen(callBack: (payload: any) => void) {
-    window.Echo.listen('btti_database_short_urls', '.new_click', (payload: any) => {
+function listen(callBack: (payload: ListenerPayload) => void) {
+    window.Echo.listen('btti_database_short_urls', '.new_click', (payload: ListenerPayload) => {
         callBack(payload);
       });
 }

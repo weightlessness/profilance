@@ -1,5 +1,5 @@
 import React from 'react';
-import { useListenNewClick } from '../customHooks/useListenNewClick';
+import { ListenerPayload, useListenNewClick } from '../customHooks/useListenNewClick';
 import LeftBlock from './LeftBlock';
 import RightBlock from './RightBlock';
 import {useDispatch} from 'react-redux'
@@ -11,7 +11,7 @@ function UrlShortener() {
   const dispatch = useDispatch()
 
   useListenNewClick({
-    callBack: (payload: any) => {
+    callBack: (payload: ListenerPayload) => {
       dispatch(appActions.newClick({link: payload.short_url}))
     }
   })
