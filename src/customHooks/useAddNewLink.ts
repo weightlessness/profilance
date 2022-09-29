@@ -20,5 +20,5 @@ export const useAddNewLink = () => {
         }
     }
     `
-    return useMutation(newMutation)
+    return useMutation(newMutation, { errorPolicy: "all" })
 };

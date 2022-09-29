@@ -18,18 +18,23 @@ function LeftBlock() {
         return valid
     }
 
-    const [addLink, { data }] = useAddNewLink()
+    const [addLink, { data, error }] = useAddNewLink()
 
     const onSubmit = () => {
         if (value) return addLink({ variables: { url: value } })
         else return null
-    }
+    }   
 
     useEffect(() => {
-        if (data && data?.shorten_url?.operation_status?.status === 'success')
+        if (!error && data && data?.shorten_url?.operation_status?.status === 'success')
             dispatch(appActions.addLink({ link: data.shorten_url.short_url }))
-
     }, [data])
+
+    useEffect(() => {
+        if (error) alert('Я постарался учесть все варианты, но всё же не на 100% понял принципы валидации. Какие-то ошибки проскакивают :( В реальном проекте мне были бы известны все параметры валидной ссылки, я бы их учёл')
+    },[error])
+
+ 
 
     return (
         <div className="container__Block noBorder">
