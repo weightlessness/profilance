@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ShortUrl } from '../../redux/reducer';
 import Link from './Link';
 
@@ -15,8 +15,8 @@ function LinksList(props: LinksListProps) {
         <div className='linkList noBorder'>
             <div className='linkList__title noBorder'>{title}</div>
             <div className='linkList__links noBorder'>
-                {links.map(link => 
-                    <Link link={link}/>
+                {links.map((link, index) => 
+                    <Link link={link} key={link?.id + index}/>
                 )}
             </div>
         </div>
