@@ -13,21 +13,24 @@ function RightBlock() {
 
     const [page, setPage] = useState(0)
     
-    const {data} = useInitLinks(page + 1)
+    const {data, error} = useInitLinks(page + 1)
 
-    const dataString = JSON.stringify(data)
+    const dataString = JSON.stringify(data) //необходимо для глубокого сравнения объекта
 
-    useEffect(() => {
-        
+    useEffect(() => {  
         if(dataString) {
             const parsedData = JSON.parse(dataString)
             dispatch(appActions.init({data: parsedData}))
         }
     },[dataString])
 
+    useEffect(() => {
+        if (error) alert('Произошла ошибка загрузки ссылок')
+    },[error])
+
     return (
         <div className="container__Block noBorder">
-            <LinksList title={'Список ссылок'} links={links}/>
+            <LinksList title={error ? 'Произошла ошибка загрузки ссылок. Для повторного запроса обновите страницу' : 'Список ссылок'} links={links}/>
             <Pagination selectPage={setPage} pageSelected={page} pageCount={pageCount}/>
         </div>
     );
